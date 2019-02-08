@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Set the browser tab name -->
+		<title>Site News</title>
+		<meta charset="utf-8">
+
+		<!-- These the javascript libraries I'm using for bootstrap
+		There is a specific order in which you have to import them in
+		-jquery
+		-popper
+		-bootstrap css
+		-bootstrap js -->
+		<link rel="stylesheet" href="css/styles.css">
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	 </head>
+
+	<body>
+  
+  <!-- 		This class top-buffer is defined in styles.css and
+  		it's purpose is to push the nav buttons down -->
+		<div class="row top top-buffer">
+			<!-- This calls a website inside of another website
+		I'm using this technique to have a threejs background -->
+	<iframe src="/main.html"></iframe> 
+		</div>
+
+			<!-- Home Button -->
+			<div class="btn-group ml-1">
+				<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"> Home </button>
+				<span class="sr-only">Toggle Home Button</span>
+				<div class="dropdown-menu">
+				<a class="dropdown-item" href="index.html">Site News</a>
+				<a class="dropdown-item" href="technews.html">Tech News</a>
+				</div>
+			</div>
+
+			<!-- Explore Button -->
+			<div class="btn-group">
+				<button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Explore </button>
+				<span class="sr-only">Toggle Explore Dropdown</span>
+				</button>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="youtube.html">Youtube</a>
+					<a class="dropdown-item" href="sadblog.html">Sad Blog</a>
+				</div>
+			</div>
+		
+			<!-- Shop Button -->
+			<div class="btn-group">
+				<button type="button" class="btn btn-outline-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Shop </button>
+				<span class="sr-only">Toggle Shop Dropdown</span>
+				</button>
+				<div class="dropdown-menu">
+					<a class="dropdown-item" href="skateshop.html">Skate Shop</a>
+					<a class="dropdown-item" href="techshop.html">Tech Shop</a>
+				</div>
+			</div>
+
+<!-- ===========================================================
+=========Site News HTML Implementation===========
+=========================================================== -->
+
+	
+
+	<div class="row spacer">
+			<div class="card text-white bg-dark ml-5 mt-5" style="max-width: 18rem; min-width: 90%;">
+				<div class="card-header">01/31/2019</div>
+				<div class="card-body">
+				<h5 class="card-title">And then there was... </h5>
+				<p class="card-text">Tech bytes 10101 is live! Slowly but surely we'll get these web pages filled
+				with tutorials, exhibits, idea, items for sale, etc. This is a place to dump a little bit of me onto you. Happy Birthday Tech Bytes!</p>
+				</div>
+			</div>	
+	</div>
+
+
+
+
+
+</body>
+
+
+	<br>
+	<br>
+
+
+
+</head>
