@@ -6,6 +6,7 @@ var clock;
 var mixer;
 
 
+var tileobject;
 var tiles = [];
 var tilesloaded = false;
 
@@ -28,7 +29,7 @@ function init() {
     var pointlight = getPointLight(1);
     pointlight.position.x = 0;
     pointlight.position.y = 0;
-    pointlight.position.z = 500;
+    pointlight.position.z = 700;
     pointlight.lookAt(0, 0, 0);
     scene.add(pointlight);
 
@@ -60,7 +61,7 @@ function init() {
 
         //     children[0].children[0].children[0].children[0].children[0].
         //     children[0].children[0].children[0].children[0];
-
+        tileobject = gltf.scene.children[0];
         count = 0;
         for (var i = 0; i < 7; i++) {
             for (var j = 0; j < 7; j++) {
@@ -159,10 +160,11 @@ function init() {
     //     scene.add(particleSystem2);
 
 
-    var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    // var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 
-    update(renderer, scene, camera, stats, controls);
+    // update(renderer, scene, camera, stats, controls);
+    update(renderer, scene, camera, stats);
 
     return scene;
 }
@@ -171,8 +173,8 @@ function init() {
 
 
 
-function update(renderer, scene, camera, stats, controls) {
-    controls.update();
+function update(renderer, scene, camera, stats) {
+    // controls.update();
 
     renderer.render(scene, camera);
 
@@ -191,6 +193,9 @@ function update(renderer, scene, camera, stats, controls) {
     if (tilesloaded) {
         // if (clock.getDelta() % 2 == 0) {
             // tiles["06"].rotation.y = Math.abs(Math.sin(clock.getElapsedTime()))*3;
+
+
+
             tiles["06"].rotation.y = tiles["06"].rotation.y + 0.02;
             tiles["15"].rotation.y = tiles["15"].rotation.y + 0.02;
             tiles["24"].rotation.y = tiles["24"].rotation.y + 0.02;
@@ -259,7 +264,7 @@ function update(renderer, scene, camera, stats, controls) {
 
             tiles["66"].rotation.y = tiles["66"].rotation.y + 0.0004375;
             
-            
+            tileobject.rotation.y = tileobject.rotation.y + 0.0004375;
             
             
             
@@ -298,7 +303,7 @@ function update(renderer, scene, camera, stats, controls) {
     // }
 
     requestAnimationFrame(function() {
-        update(renderer, scene, camera, stats, controls);
+        update(renderer, scene, camera, stats);
     });
 }
 
