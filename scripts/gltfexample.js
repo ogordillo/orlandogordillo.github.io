@@ -23,7 +23,7 @@ var scene = init();
 
 function init() {
     var scene = new THREE.Scene(); //A Three Scene is the main container
-    var stats = new Stats(); //stats is a js library that easily makes a widget to track your fps
+    // var stats = new Stats(); //stats is a js library that easily makes a widget to track your fps
     clock = new THREE.Clock(); //clock is a continues number.. useful
 
     var pointlight = getPointLight(1);
@@ -38,7 +38,7 @@ function init() {
     // scene.add( directionalLight );
     
 
-    document.body.appendChild(stats.dom); //the dom refers to the html commands, check the dom api here: https://www.w3schools.com/js/js_htmldom.asp
+    // document.body.appendChild(stats.dom); //the dom refers to the html commands, check the dom api here: https://www.w3schools.com/js/js_htmldom.asp
 
     camera = getPerspectiveCamera();
     renderer = new THREE.WebGLRenderer();
@@ -164,8 +164,8 @@ function init() {
 
 
     // update(renderer, scene, camera, stats, controls);
-    update(renderer, scene, camera, stats);
-
+    // update(renderer, scene, camera, stats);
+    update(renderer, scene, camera);
     return scene;
 }
 
@@ -173,12 +173,12 @@ function init() {
 
 
 
-function update(renderer, scene, camera, stats) {
+function update(renderer, scene, camera) {
     // controls.update();
 
     renderer.render(scene, camera);
 
-    stats.update();
+    // stats.update();
     
 
     // if (mixer) {
@@ -303,7 +303,7 @@ function update(renderer, scene, camera, stats) {
     // }
 
     requestAnimationFrame(function() {
-        update(renderer, scene, camera, stats);
+        update(renderer, scene, camera);
     });
 }
 
@@ -368,11 +368,11 @@ function getPerspectiveCamera() {
     camera.position.z = 20;
 
     //left/right
-    // camera.position.x = -10 * (window.innerWidth / window.innerHeight);
+    camera.position.x = 20;
 
     //up/down
     // camera.position.y = 5* (window.innerWidth / window.innerHeight)
-    camera.lookAt(new THREE.Vector3(0, 0, 0));
+    camera.lookAt(new THREE.Vector3(-10, 0, 0));
     return camera;
 }
 
