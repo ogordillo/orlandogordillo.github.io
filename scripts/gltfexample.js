@@ -25,16 +25,16 @@ function init() {
     var stats = new Stats(); //stats is a js library that easily makes a widget to track your fps
     clock = new THREE.Clock(); //clock is a continues number.. useful
 
-    // var pointlight = getPointLight(1);
-    // pointlight.position.x = 0;
-    // pointlight.position.y = 0;
-    // pointlight.position.z = 500;
-    // pointlight.lookAt(0, 0, 0);
-    // scene.add(pointlight);
+    var pointlight = getPointLight(1);
+    pointlight.position.x = 0;
+    pointlight.position.y = 0;
+    pointlight.position.z = 500;
+    pointlight.lookAt(0, 0, 0);
+    scene.add(pointlight);
 
 
-    var directionalLight = new THREE.DirectionalLight( 0xffffff, 60 );
-    scene.add( directionalLight );
+    // var directionalLight = new THREE.DirectionalLight( 0xffffff, 60 );
+    // scene.add( directionalLight );
     
 
     document.body.appendChild(stats.dom); //the dom refers to the html commands, check the dom api here: https://www.w3schools.com/js/js_htmldom.asp
