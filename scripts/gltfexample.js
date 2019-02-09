@@ -6,8 +6,12 @@ var clock;
 var mixer;
 
 
+var tiles = [];
+var tilesloaded = false;
+
+
 var gunbone;
-var gunboneposition = new THREE.Vector3( 0, 0, 0 );;
+var gunboneposition = new THREE.Vector3(0, 0, 0);;
 var gunboneactive = false;
 var guntriggerpressed = false;
 
@@ -21,29 +25,25 @@ function init() {
     var stats = new Stats(); //stats is a js library that easily makes a widget to track your fps
     clock = new THREE.Clock(); //clock is a continues number.. useful
 
-    var pointlight = getPointLight(0.02);
-    pointlight.position.x = 0;
-    pointlight.position.y = 0;
-    pointlight.position.z = 100;
-    pointlight.lookAt(0,0,0);
+    // var pointlight = getPointLight(1);
+    // pointlight.position.x = 0;
+    // pointlight.position.y = 0;
+    // pointlight.position.z = 500;
+    // pointlight.lookAt(0, 0, 0);
+    // scene.add(pointlight);
 
-    var pointlight2 = getPointLight(0.02);
-    pointlight2.position.x = 25;
-    pointlight2.position.y = 25;
-    pointlight2.position.z = 100;
-    pointlight2.lookAt(0,0,0);
 
-    // var directionalLight = new THREE.DirectionalLight( 0xffffff, 3 );
-    // scene.add( directionalLight );
-    scene.add(pointlight);
-    scene.add(pointlight2);
+    var directionalLight = new THREE.DirectionalLight( 0xffffff, 60 );
+    scene.add( directionalLight );
+    
+
     document.body.appendChild(stats.dom); //the dom refers to the html commands, check the dom api here: https://www.w3schools.com/js/js_htmldom.asp
 
     camera = getPerspectiveCamera();
     renderer = new THREE.WebGLRenderer();
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.shadowMap.enabled = true;
-    renderer.setClearColor('rgb(0, 0, 0)');
+    renderer.setClearColor('rgb(255, 255, 255)');
 
     //var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
@@ -51,97 +51,115 @@ function init() {
 
 
 
-var loader = new THREE.GLTFLoader();
-loader.setDRACOLoader( new THREE.DRACOLoader() );
-loader.setPath('/assets/models/gltf/batmanmirror/');
-loader.load('mirror_beta_1.gltf', function (gltf) {
-    console.log(gltf.scene);
-    cube1 = gltf.scene.children[0];
-    cube1.rotation.z = cube1.rotation.z + 0.2;
-    //     children[0].children[0].children[0].children[0].children[0].
-    //     children[0].children[0].children[0].children[0];
-    console.log(cube1.name)
-  gltf.scene.traverse(function (child) {
-    var animations = gltf.animations;
-    if (animations && animations.length) {
-      mixer = new THREE.AnimationMixer(gltf.scene); // mixer is a global variable
-      animation = mixer.clipAction(animations[0]);
-      animation.play();
+    var loader = new THREE.GLTFLoader();
+    loader.setDRACOLoader(new THREE.DRACOLoader());
+    loader.setPath('/assets/models/gltf/labelednames/');
+    loader.load('untitled.gltf', function(gltf) {
+        console.log(gltf.scene);
+        // cube1 = gltf.scene.children[0].children[0].children[0];
 
-    }
-  });
-  scene.add(gltf.scene);
-}, (xhr) => xhr, (e) => console.error(e));
+        //     children[0].children[0].children[0].children[0].children[0].
+        //     children[0].children[0].children[0].children[0];
 
+        count = 0;
+        for (var i = 0; i < 7; i++) {
+            for (var j = 0; j < 7; j++) {
+                // console.log(count);
+                // console.log(gltf.scene.children[0]);
+                // console.log(gltf.scene.children[0].children[0]);
+                tiles[gltf.scene.children[0].children[count].children[0].name] = gltf.scene.children[0].children[count].children[0];
+                count++;
+                // tiles.push({
+                //     key: gltf.scene.children[0].children[count].children[0].name,
+                //     value: gltf.scene.children[0].children[count++].children[0]
+                // });
+            }
 
+        }
+        console.log(tiles);
+        tilesloaded = true;
+        console.log(tiles["00"]);
+        gltf.scene.traverse(function(child) {
+            var animations = gltf.animations;
+            if (animations && animations.length) {
+                mixer = new THREE.AnimationMixer(gltf.scene); // mixer is a global variable
+                animation = mixer.clipAction(animations[0]);
+                animation.play();
 
-
-
-
-
-// var particleGeo3 = new THREE.Geometry();
-//     var particleMat3 = new THREE.PointsMaterial({
-//         color: 'rgb(255, 255, 255)',
-//         size: 1,
-//         map: new THREE.TextureLoader().load('/assets/textures/particle.jpg'),
-//         transparent: true,
-//         blending: THREE.AdditiveBlending,
-//         depthWrite: false
-//     });
-
-//     var particleCount3 = 2000;
-//     var particleDistance3 = 100;
-
-//     for (var i=0; i<particleCount3; i++) {
-//         var posX = (Math.random() - 0.5) * particleDistance3;
-//         var posY = (Math.random() - 0.5) * particleDistance3;
-//         var posZ = (Math.random() - 0.5) * particleDistance3;
-//         var particle = new THREE.Vector3(posX, posY, posZ);
-
-//         particleGeo3.vertices.push(particle);
-//     }
-
-//     var particleSystem3 = new THREE.Points(
-//         particleGeo3,
-//         particleMat3
-//     );
-//     particleSystem3.name = 'particleSystem3';
-
-//     scene.add(particleSystem3);
+            }
+        });
+        scene.add(gltf.scene);
+    }, (xhr) => xhr, (e) => console.error(e));
 
 
 
 
-//     var particleGeo2 = new THREE.Geometry();
-//     var particleMat2 = new THREE.PointsMaterial({
-//         color: 'rgb(255, 0, 0)',
-//         size: 3,
-//         map: new THREE.TextureLoader().load('/assets/textures/particle.jpg'),
-//         transparent: true,
-//         blending: THREE.AdditiveBlending,
-//         depthWrite: false
-//     });
-
-//     var particleCount2 = 1;
-//     var particleDistance2 = 1;
-
-//     for (var i=0; i<particleCount2; i++) {
-
-//         var particle = new THREE.Vector3( 0, 5, 0 );
-
-//         particleGeo2.vertices.push(particle);
-//     }
-
-//     var particleSystem2 = new THREE.Points(
-//         particleGeo2,
-//         particleMat2
-//     );
-//     particleSystem2.name = 'particleSystem2';
-
-//     scene.add(particleSystem2);
 
 
-var controls = new THREE.OrbitControls( camera, renderer.domElement );
+
+    // var particleGeo3 = new THREE.Geometry();
+    //     var particleMat3 = new THREE.PointsMaterial({
+    //         color: 'rgb(255, 255, 255)',
+    //         size: 1,
+    //         map: new THREE.TextureLoader().load('/assets/textures/particle.jpg'),
+    //         transparent: true,
+    //         blending: THREE.AdditiveBlending,
+    //         depthWrite: false
+    //     });
+
+    //     var particleCount3 = 2000;
+    //     var particleDistance3 = 100;
+
+    //     for (var i=0; i<particleCount3; i++) {
+    //         var posX = (Math.random() - 0.5) * particleDistance3;
+    //         var posY = (Math.random() - 0.5) * particleDistance3;
+    //         var posZ = (Math.random() - 0.5) * particleDistance3;
+    //         var particle = new THREE.Vector3(posX, posY, posZ);
+
+    //         particleGeo3.vertices.push(particle);
+    //     }
+
+    //     var particleSystem3 = new THREE.Points(
+    //         particleGeo3,
+    //         particleMat3
+    //     );
+    //     particleSystem3.name = 'particleSystem3';
+
+    //     scene.add(particleSystem3);
+
+
+
+
+    //     var particleGeo2 = new THREE.Geometry();
+    //     var particleMat2 = new THREE.PointsMaterial({
+    //         color: 'rgb(255, 0, 0)',
+    //         size: 3,
+    //         map: new THREE.TextureLoader().load('/assets/textures/particle.jpg'),
+    //         transparent: true,
+    //         blending: THREE.AdditiveBlending,
+    //         depthWrite: false
+    //     });
+
+    //     var particleCount2 = 1;
+    //     var particleDistance2 = 1;
+
+    //     for (var i=0; i<particleCount2; i++) {
+
+    //         var particle = new THREE.Vector3( 0, 5, 0 );
+
+    //         particleGeo2.vertices.push(particle);
+    //     }
+
+    //     var particleSystem2 = new THREE.Points(
+    //         particleGeo2,
+    //         particleMat2
+    //     );
+    //     particleSystem2.name = 'particleSystem2';
+
+    //     scene.add(particleSystem2);
+
+
+    var controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 
     update(renderer, scene, camera, stats, controls);
@@ -153,23 +171,102 @@ var controls = new THREE.OrbitControls( camera, renderer.domElement );
 
 
 
-function update(renderer, scene, camera, stats, controls){
+function update(renderer, scene, camera, stats, controls) {
     controls.update();
 
     renderer.render(scene, camera);
 
     stats.update();
+    
 
     // if (mixer) {
     //     mixer.update(clock.getDelta());
     //     gunboneactive = true;
     //     gunbone.lookAt(gunboneposition);
-        
+
 
     //     // console.log(gunbone.position)
     // }
 
+    if (tilesloaded) {
+        // if (clock.getDelta() % 2 == 0) {
+            // tiles["06"].rotation.y = Math.abs(Math.sin(clock.getElapsedTime()))*3;
+            tiles["06"].rotation.y = tiles["06"].rotation.y + 0.02;
+            tiles["15"].rotation.y = tiles["15"].rotation.y + 0.02;
+            tiles["24"].rotation.y = tiles["24"].rotation.y + 0.02;
+            tiles["33"].rotation.y = tiles["33"].rotation.y + 0.02;
+            tiles["42"].rotation.y = tiles["42"].rotation.y + 0.02;
+            tiles["51"].rotation.y = tiles["51"].rotation.y + 0.02;
+            tiles["60"].rotation.y = tiles["60"].rotation.y + 0.02;
 
+
+            tiles["05"].rotation.y = tiles["05"].rotation.y + 0.01;
+            tiles["14"].rotation.y = tiles["14"].rotation.y + 0.01;
+            tiles["23"].rotation.y = tiles["23"].rotation.y + 0.01;
+            tiles["32"].rotation.y = tiles["32"].rotation.y + 0.01;
+            tiles["41"].rotation.y = tiles["41"].rotation.y + 0.01;
+            tiles["50"].rotation.y = tiles["50"].rotation.y + 0.01;
+
+            tiles["16"].rotation.y = tiles["16"].rotation.y + 0.01;
+            tiles["25"].rotation.y = tiles["25"].rotation.y + 0.01;
+            tiles["34"].rotation.y = tiles["34"].rotation.y + 0.01;
+            tiles["43"].rotation.y = tiles["43"].rotation.y + 0.01;
+            tiles["52"].rotation.y = tiles["52"].rotation.y + 0.01;
+            tiles["61"].rotation.y = tiles["61"].rotation.y + 0.01;
+
+            tiles["04"].rotation.y = tiles["04"].rotation.y + 0.005;
+            tiles["13"].rotation.y = tiles["13"].rotation.y + 0.005;
+            tiles["22"].rotation.y = tiles["22"].rotation.y + 0.005;
+            tiles["31"].rotation.y = tiles["31"].rotation.y + 0.005;
+            tiles["40"].rotation.y = tiles["40"].rotation.y + 0.005;
+
+            tiles["26"].rotation.y = tiles["26"].rotation.y + 0.005;
+            tiles["35"].rotation.y = tiles["35"].rotation.y + 0.005;
+            tiles["44"].rotation.y = tiles["44"].rotation.y + 0.005;
+            tiles["53"].rotation.y = tiles["53"].rotation.y + 0.005;
+            tiles["62"].rotation.y = tiles["62"].rotation.y + 0.005;
+
+            tiles["03"].rotation.y = tiles["03"].rotation.y + 0.0025;
+            tiles["12"].rotation.y = tiles["12"].rotation.y + 0.0025;
+            tiles["21"].rotation.y = tiles["21"].rotation.y + 0.0025;
+            tiles["30"].rotation.y = tiles["30"].rotation.y + 0.0025;
+
+            tiles["03"].rotation.y = tiles["03"].rotation.y + 0.0025;
+            tiles["12"].rotation.y = tiles["12"].rotation.y + 0.0025;
+            tiles["21"].rotation.y = tiles["21"].rotation.y + 0.0025;
+            tiles["30"].rotation.y = tiles["30"].rotation.y + 0.0025;
+
+            tiles["36"].rotation.y = tiles["36"].rotation.y + 0.0025;
+            tiles["45"].rotation.y = tiles["45"].rotation.y + 0.0025;
+            tiles["54"].rotation.y = tiles["54"].rotation.y + 0.0025;
+            tiles["63"].rotation.y = tiles["63"].rotation.y + 0.0025;
+
+            tiles["02"].rotation.y = tiles["02"].rotation.y + 0.00175;
+            tiles["11"].rotation.y = tiles["11"].rotation.y + 0.00175;
+            tiles["20"].rotation.y = tiles["20"].rotation.y + 0.00175;
+
+            tiles["46"].rotation.y = tiles["46"].rotation.y + 0.00175;
+            tiles["55"].rotation.y = tiles["55"].rotation.y + 0.00175;
+            tiles["64"].rotation.y = tiles["64"].rotation.y + 0.00175;
+
+            tiles["01"].rotation.y = tiles["01"].rotation.y + 0.000875;
+            tiles["10"].rotation.y = tiles["10"].rotation.y + 0.000875;
+
+            tiles["56"].rotation.y = tiles["56"].rotation.y + 0.000875;
+            tiles["65"].rotation.y = tiles["65"].rotation.y + 0.000875;
+
+            tiles["00"].rotation.y = tiles["00"].rotation.y + 0.0004375;
+
+            tiles["66"].rotation.y = tiles["66"].rotation.y + 0.0004375;
+            
+            
+            
+            
+            
+           
+            
+        // }
+    }
 
     // var particleSystem = scene.getObjectByName('particleSystem3');
     // particleSystem.rotation.y += 0.005;
@@ -206,14 +303,14 @@ function update(renderer, scene, camera, stats, controls){
 }
 
 
-function updateGunLookAt(mouse3d){
+function updateGunLookAt(mouse3d) {
     // console.log(newx,newy);
-    if(gunboneactive){
+    if (gunboneactive) {
         gunbone.lookAt(mouse3d);
     }
 }
 
-function fireGun(){
+function fireGun() {
     // var particleSystem = scene.getObjectByName('particleSystem2');
     // // particleSystem.rotation.y += 0.005;
     // // particleSystem.geometry.vertices[0].particle.z += 1;
@@ -242,20 +339,20 @@ function fireGun(){
 
 
 
-window.addEventListener( 'resize', onWindowResize, false );
+window.addEventListener('resize', onWindowResize, false);
 
-function onWindowResize(){
+function onWindowResize() {
 
     camera.aspect = window.innerWidth / window.innerHeight;
     camera.updateProjectionMatrix();
 
-    renderer.setSize( window.innerWidth, window.innerHeight );
+    renderer.setSize(window.innerWidth, window.innerHeight);
 
 }
 
 
 function getPerspectiveCamera() {
-// camera
+    // camera
     camera = new THREE.PerspectiveCamera(
         45, // field of view
         window.innerWidth / window.innerHeight, // aspect ratio
@@ -266,10 +363,10 @@ function getPerspectiveCamera() {
     camera.position.z = 20;
 
     //left/right
-    camera.position.x = -10 * (window.innerWidth / window.innerHeight);
+    // camera.position.x = -10 * (window.innerWidth / window.innerHeight);
 
     //up/down
-    camera.position.y = 5* (window.innerWidth / window.innerHeight)
+    // camera.position.y = 5* (window.innerWidth / window.innerHeight)
     camera.lookAt(new THREE.Vector3(0, 0, 0));
     return camera;
 }
@@ -284,57 +381,52 @@ function getPointLight(intensity) {
 }
 
 //on mouse move
-    window.addEventListener('mousemove', function(e){
-        var xpos = -( event.clientX / window.innerWidth ) * 2 + 0.5;
-        var ypos = -( event.clientY / window.innerHeight ) * 2 + 1 
-        var zpos = -0.5
-       // console.log("x",xpos);
-       // console.log("y",ypos);
+window.addEventListener('mousemove', function(e) {
+    var xpos = -(event.clientX / window.innerWidth) * 2 + 0.5;
+    var ypos = -(event.clientY / window.innerHeight) * 2 + 1
+    var zpos = -0.5
+        // console.log("x",xpos);
+        // console.log("y",ypos);
         // console.log(gunbone.position);
         // var mouse3D = new THREE.Vector3(xpos, zpos, ypos);
         // gunboneposition = mouse3D;
 
-        // var particleSystem2 = scene.getObjectByName('particleSystem2');
-        // particleSystem2.geometry.vertices.forEach(function(particle) {
-        //     particle.x = gunbone.position.x
-        //     particle.y = gunbone.position.y
-        //     particle.z = gunbone.position.z
+    // var particleSystem2 = scene.getObjectByName('particleSystem2');
+    // particleSystem2.geometry.vertices.forEach(function(particle) {
+    //     particle.x = gunbone.position.x
+    //     particle.y = gunbone.position.y
+    //     particle.z = gunbone.position.z
 
-        //     // particle.y = gunboneposition.y;
-        //     // particle.z = gunboneposition.z;
-        //     //particle.x = gunbone.position.x
-        // });
-        // particleSystem2.geometry.lookAt(mouse3D);
-        // particleSystem2.geometry.verticesNeedUpdate = true;
-        // updateGunLookAt(mouse3D);
-    }, false)
-
-
-    //on touch starting
-    document.body.addEventListener('touchstart', function(e){
-        
-    }, false)
+    //     // particle.y = gunboneposition.y;
+    //     // particle.z = gunboneposition.z;
+    //     //particle.x = gunbone.position.x
+    // });
+    // particleSystem2.geometry.lookAt(mouse3D);
+    // particleSystem2.geometry.verticesNeedUpdate = true;
+    // updateGunLookAt(mouse3D);
+}, false)
 
 
-    //on touch cancel
-    document.body.addEventListener('touchend', function(e){
-        var touchobj = e.changedTouches[0]
-    }, false)
+//on touch starting
+document.body.addEventListener('touchstart', function(e) {
+
+}, false)
 
 
-    //on mouse down
-    document.addEventListener("mousedown", function(e) 
-    {
-        guntriggerpressed = true;
-        // fireGun();
-    })
-
-    //on mouse up
-    document.addEventListener("mouseup", function(e) 
-    {
-        guntriggerpressed = false;
-        //e.clientX, e.clientY
-    })
+//on touch cancel
+document.body.addEventListener('touchend', function(e) {
+    var touchobj = e.changedTouches[0]
+}, false)
 
 
+//on mouse down
+document.addEventListener("mousedown", function(e) {
+    guntriggerpressed = true;
+    // fireGun();
+})
 
+//on mouse up
+document.addEventListener("mouseup", function(e) {
+    guntriggerpressed = false;
+    //e.clientX, e.clientY
+})
