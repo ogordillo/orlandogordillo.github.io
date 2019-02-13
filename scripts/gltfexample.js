@@ -52,45 +52,45 @@ function init() {
 
 
 
-    var loader = new THREE.GLTFLoader();
-    loader.setDRACOLoader(new THREE.DRACOLoader());
-    loader.setPath('/assets/models/gltf/labelednames/');
-    loader.load('untitled.gltf', function(gltf) {
-        console.log(gltf.scene);
-        // cube1 = gltf.scene.children[0].children[0].children[0];
+    // var loader = new THREE.GLTFLoader();
+    // loader.setDRACOLoader(new THREE.DRACOLoader());
+    // loader.setPath('/assets/models/gltf/labelednames/');
+    // loader.load('untitled.gltf', function(gltf) {
+    //     console.log(gltf.scene);
+    //     // cube1 = gltf.scene.children[0].children[0].children[0];
 
-        //     children[0].children[0].children[0].children[0].children[0].
-        //     children[0].children[0].children[0].children[0];
-        tileobject = gltf.scene.children[0];
-        count = 0;
-        for (var i = 0; i < 7; i++) {
-            for (var j = 0; j < 7; j++) {
-                // console.log(count);
-                // console.log(gltf.scene.children[0]);
-                // console.log(gltf.scene.children[0].children[0]);
-                tiles[gltf.scene.children[0].children[count].children[0].name] = gltf.scene.children[0].children[count].children[0];
-                count++;
-                // tiles.push({
-                //     key: gltf.scene.children[0].children[count].children[0].name,
-                //     value: gltf.scene.children[0].children[count++].children[0]
-                // });
-            }
+    //     //     children[0].children[0].children[0].children[0].children[0].
+    //     //     children[0].children[0].children[0].children[0];
+    //     tileobject = gltf.scene.children[0];
+    //     count = 0;
+    //     for (var i = 0; i < 7; i++) {
+    //         for (var j = 0; j < 7; j++) {
+    //             // console.log(count);
+    //             // console.log(gltf.scene.children[0]);
+    //             // console.log(gltf.scene.children[0].children[0]);
+    //             tiles[gltf.scene.children[0].children[count].children[0].name] = gltf.scene.children[0].children[count].children[0];
+    //             count++;
+    //             // tiles.push({
+    //             //     key: gltf.scene.children[0].children[count].children[0].name,
+    //             //     value: gltf.scene.children[0].children[count++].children[0]
+    //             // });
+    //         }
 
-        }
-        console.log(tiles);
-        tilesloaded = true;
-        console.log(tiles["00"]);
-        gltf.scene.traverse(function(child) {
-            var animations = gltf.animations;
-            if (animations && animations.length) {
-                mixer = new THREE.AnimationMixer(gltf.scene); // mixer is a global variable
-                animation = mixer.clipAction(animations[0]);
-                animation.play();
+    //     }
+    //     console.log(tiles);
+    //     tilesloaded = true;
+    //     console.log(tiles["00"]);
+    //     gltf.scene.traverse(function(child) {
+    //         var animations = gltf.animations;
+    //         if (animations && animations.length) {
+    //             mixer = new THREE.AnimationMixer(gltf.scene); // mixer is a global variable
+    //             animation = mixer.clipAction(animations[0]);
+    //             animation.play();
 
-            }
-        });
-        scene.add(gltf.scene);
-    }, (xhr) => xhr, (e) => console.error(e));
+    //         }
+    //     });
+    //     scene.add(gltf.scene);
+    // }, (xhr) => xhr, (e) => console.error(e));
 
 
 
@@ -196,75 +196,75 @@ function update(renderer, scene, camera) {
 
 
 
-            tiles["06"].rotation.y = tiles["06"].rotation.y + 0.02;
-            tiles["15"].rotation.y = tiles["15"].rotation.y + 0.02;
-            tiles["24"].rotation.y = tiles["24"].rotation.y + 0.02;
-            tiles["33"].rotation.y = tiles["33"].rotation.y + 0.02;
-            tiles["42"].rotation.y = tiles["42"].rotation.y + 0.02;
-            tiles["51"].rotation.y = tiles["51"].rotation.y + 0.02;
-            tiles["60"].rotation.y = tiles["60"].rotation.y + 0.02;
+            // tiles["06"].rotation.y = tiles["06"].rotation.y + 0.02;
+            // tiles["15"].rotation.y = tiles["15"].rotation.y + 0.02;
+            // tiles["24"].rotation.y = tiles["24"].rotation.y + 0.02;
+            // tiles["33"].rotation.y = tiles["33"].rotation.y + 0.02;
+            // tiles["42"].rotation.y = tiles["42"].rotation.y + 0.02;
+            // tiles["51"].rotation.y = tiles["51"].rotation.y + 0.02;
+            // tiles["60"].rotation.y = tiles["60"].rotation.y + 0.02;
 
 
-            tiles["05"].rotation.y = tiles["05"].rotation.y + 0.01;
-            tiles["14"].rotation.y = tiles["14"].rotation.y + 0.01;
-            tiles["23"].rotation.y = tiles["23"].rotation.y + 0.01;
-            tiles["32"].rotation.y = tiles["32"].rotation.y + 0.01;
-            tiles["41"].rotation.y = tiles["41"].rotation.y + 0.01;
-            tiles["50"].rotation.y = tiles["50"].rotation.y + 0.01;
+            // tiles["05"].rotation.y = tiles["05"].rotation.y + 0.01;
+            // tiles["14"].rotation.y = tiles["14"].rotation.y + 0.01;
+            // tiles["23"].rotation.y = tiles["23"].rotation.y + 0.01;
+            // tiles["32"].rotation.y = tiles["32"].rotation.y + 0.01;
+            // tiles["41"].rotation.y = tiles["41"].rotation.y + 0.01;
+            // tiles["50"].rotation.y = tiles["50"].rotation.y + 0.01;
 
-            tiles["16"].rotation.y = tiles["16"].rotation.y + 0.01;
-            tiles["25"].rotation.y = tiles["25"].rotation.y + 0.01;
-            tiles["34"].rotation.y = tiles["34"].rotation.y + 0.01;
-            tiles["43"].rotation.y = tiles["43"].rotation.y + 0.01;
-            tiles["52"].rotation.y = tiles["52"].rotation.y + 0.01;
-            tiles["61"].rotation.y = tiles["61"].rotation.y + 0.01;
+            // tiles["16"].rotation.y = tiles["16"].rotation.y + 0.01;
+            // tiles["25"].rotation.y = tiles["25"].rotation.y + 0.01;
+            // tiles["34"].rotation.y = tiles["34"].rotation.y + 0.01;
+            // tiles["43"].rotation.y = tiles["43"].rotation.y + 0.01;
+            // tiles["52"].rotation.y = tiles["52"].rotation.y + 0.01;
+            // tiles["61"].rotation.y = tiles["61"].rotation.y + 0.01;
 
-            tiles["04"].rotation.y = tiles["04"].rotation.y + 0.005;
-            tiles["13"].rotation.y = tiles["13"].rotation.y + 0.005;
-            tiles["22"].rotation.y = tiles["22"].rotation.y + 0.005;
-            tiles["31"].rotation.y = tiles["31"].rotation.y + 0.005;
-            tiles["40"].rotation.y = tiles["40"].rotation.y + 0.005;
+            // tiles["04"].rotation.y = tiles["04"].rotation.y + 0.005;
+            // tiles["13"].rotation.y = tiles["13"].rotation.y + 0.005;
+            // tiles["22"].rotation.y = tiles["22"].rotation.y + 0.005;
+            // tiles["31"].rotation.y = tiles["31"].rotation.y + 0.005;
+            // tiles["40"].rotation.y = tiles["40"].rotation.y + 0.005;
 
-            tiles["26"].rotation.y = tiles["26"].rotation.y + 0.005;
-            tiles["35"].rotation.y = tiles["35"].rotation.y + 0.005;
-            tiles["44"].rotation.y = tiles["44"].rotation.y + 0.005;
-            tiles["53"].rotation.y = tiles["53"].rotation.y + 0.005;
-            tiles["62"].rotation.y = tiles["62"].rotation.y + 0.005;
+            // tiles["26"].rotation.y = tiles["26"].rotation.y + 0.005;
+            // tiles["35"].rotation.y = tiles["35"].rotation.y + 0.005;
+            // tiles["44"].rotation.y = tiles["44"].rotation.y + 0.005;
+            // tiles["53"].rotation.y = tiles["53"].rotation.y + 0.005;
+            // tiles["62"].rotation.y = tiles["62"].rotation.y + 0.005;
 
-            tiles["03"].rotation.y = tiles["03"].rotation.y + 0.0025;
-            tiles["12"].rotation.y = tiles["12"].rotation.y + 0.0025;
-            tiles["21"].rotation.y = tiles["21"].rotation.y + 0.0025;
-            tiles["30"].rotation.y = tiles["30"].rotation.y + 0.0025;
+            // tiles["03"].rotation.y = tiles["03"].rotation.y + 0.0025;
+            // tiles["12"].rotation.y = tiles["12"].rotation.y + 0.0025;
+            // tiles["21"].rotation.y = tiles["21"].rotation.y + 0.0025;
+            // tiles["30"].rotation.y = tiles["30"].rotation.y + 0.0025;
 
-            tiles["03"].rotation.y = tiles["03"].rotation.y + 0.0025;
-            tiles["12"].rotation.y = tiles["12"].rotation.y + 0.0025;
-            tiles["21"].rotation.y = tiles["21"].rotation.y + 0.0025;
-            tiles["30"].rotation.y = tiles["30"].rotation.y + 0.0025;
+            // tiles["03"].rotation.y = tiles["03"].rotation.y + 0.0025;
+            // tiles["12"].rotation.y = tiles["12"].rotation.y + 0.0025;
+            // tiles["21"].rotation.y = tiles["21"].rotation.y + 0.0025;
+            // tiles["30"].rotation.y = tiles["30"].rotation.y + 0.0025;
 
-            tiles["36"].rotation.y = tiles["36"].rotation.y + 0.0025;
-            tiles["45"].rotation.y = tiles["45"].rotation.y + 0.0025;
-            tiles["54"].rotation.y = tiles["54"].rotation.y + 0.0025;
-            tiles["63"].rotation.y = tiles["63"].rotation.y + 0.0025;
+            // tiles["36"].rotation.y = tiles["36"].rotation.y + 0.0025;
+            // tiles["45"].rotation.y = tiles["45"].rotation.y + 0.0025;
+            // tiles["54"].rotation.y = tiles["54"].rotation.y + 0.0025;
+            // tiles["63"].rotation.y = tiles["63"].rotation.y + 0.0025;
 
-            tiles["02"].rotation.y = tiles["02"].rotation.y + 0.00175;
-            tiles["11"].rotation.y = tiles["11"].rotation.y + 0.00175;
-            tiles["20"].rotation.y = tiles["20"].rotation.y + 0.00175;
+            // tiles["02"].rotation.y = tiles["02"].rotation.y + 0.00175;
+            // tiles["11"].rotation.y = tiles["11"].rotation.y + 0.00175;
+            // tiles["20"].rotation.y = tiles["20"].rotation.y + 0.00175;
 
-            tiles["46"].rotation.y = tiles["46"].rotation.y + 0.00175;
-            tiles["55"].rotation.y = tiles["55"].rotation.y + 0.00175;
-            tiles["64"].rotation.y = tiles["64"].rotation.y + 0.00175;
+            // tiles["46"].rotation.y = tiles["46"].rotation.y + 0.00175;
+            // tiles["55"].rotation.y = tiles["55"].rotation.y + 0.00175;
+            // tiles["64"].rotation.y = tiles["64"].rotation.y + 0.00175;
 
-            tiles["01"].rotation.y = tiles["01"].rotation.y + 0.000875;
-            tiles["10"].rotation.y = tiles["10"].rotation.y + 0.000875;
+            // tiles["01"].rotation.y = tiles["01"].rotation.y + 0.000875;
+            // tiles["10"].rotation.y = tiles["10"].rotation.y + 0.000875;
 
-            tiles["56"].rotation.y = tiles["56"].rotation.y + 0.000875;
-            tiles["65"].rotation.y = tiles["65"].rotation.y + 0.000875;
+            // tiles["56"].rotation.y = tiles["56"].rotation.y + 0.000875;
+            // tiles["65"].rotation.y = tiles["65"].rotation.y + 0.000875;
 
-            tiles["00"].rotation.y = tiles["00"].rotation.y + 0.0004375;
+            // tiles["00"].rotation.y = tiles["00"].rotation.y + 0.0004375;
 
-            tiles["66"].rotation.y = tiles["66"].rotation.y + 0.0004375;
+            // tiles["66"].rotation.y = tiles["66"].rotation.y + 0.0004375;
             
-            tileobject.rotation.y = tileobject.rotation.y + 0.0004375;
+            // tileobject.rotation.y = tileobject.rotation.y + 0.0004375;
             
             
             
