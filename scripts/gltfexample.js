@@ -21,6 +21,9 @@ var mixers = [];
 var scene = init();
 
 
+
+
+
 function init() {
     var scene = new THREE.Scene(); //A Three Scene is the main container
     // var stats = new Stats(); //stats is a js library that easily makes a widget to track your fps
