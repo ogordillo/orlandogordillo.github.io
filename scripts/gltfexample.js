@@ -20,7 +20,7 @@ var guntriggerpressed = false;
 var mixers = [];
 var scene = init();
 
-
+var mult = 1.0;
 
 
 
@@ -99,42 +99,42 @@ function init() {
 
 
 
-        var gaugeData = {'data': 80.0}
+    //     var gaugeData = {'data': 80.0}
   
-    // create a chart and set options
-    // note that we bind the chart to the element with id equal to chart1 via the c3.js API
-    var chart = c3.generate({
-        bindto: '#chart1',
-        data: {
-            json: gaugeData,
-            type: 'gauge',
-        },
-        gauge: {
-            label:{
-                //returning the value here and not the ratio
-                format: function(value, ratio){ return value;}
-            },
-            min: 0,
-            max: 100,
-            width: 15,
-            units: 'value' //this is only the text for the label
-        }
-    });
+    // // create a chart and set options
+    // // note that we bind the chart to the element with id equal to chart1 via the c3.js API
+    // var chart = c3.generate({
+    //     bindto: '#chart1',
+    //     data: {
+    //         json: gaugeData,
+    //         type: 'gauge',
+    //     },
+    //     gauge: {
+    //         label:{
+    //             //returning the value here and not the ratio
+    //             format: function(value, ratio){ return value;}
+    //         },
+    //         min: 0,
+    //         max: 100,
+    //         width: 15,
+    //         units: 'value' //this is only the text for the label
+    //     }
+    // });
 
 
-        setInterval(function () {
+    //     setInterval(function () {
         
-        // create a random value between 0 and 100, rounded to 2 digits
-         var newValue = Math.floor(100 * Math.random());
+    //     // create a random value between 0 and 100, rounded to 2 digits
+    //      var newValue = Math.floor(100 * Math.random());
         
-        // // create a data array holding the random value
-         var newData = {'data': newValue };
+    //     // // create a data array holding the random value
+    //      var newData = {'data': newValue };
         
-        // // tell the chart to load the new data
-         chart.load({
-           json: newData
-         });
-    }, 2000);
+    //     // // tell the chart to load the new data
+    //      chart.load({
+    //        json: newData
+    //      });
+    // }, 2000);
 
     // var particleGeo3 = new THREE.Geometry();
     //     var particleMat3 = new THREE.PointsMaterial({
@@ -208,7 +208,9 @@ function init() {
 }
 
 
-
+document.querySelector('html').onclick = function() {
+    mult = mult + mult;
+}
 
 
 function update(renderer, scene, camera) {
@@ -234,75 +236,75 @@ function update(renderer, scene, camera) {
 
             // console.log("I am here");
 
-            tiles["06"].rotation.y = tiles["06"].rotation.y + 0.02;
-            tiles["15"].rotation.y = tiles["15"].rotation.y + 0.02;
-            tiles["24"].rotation.y = tiles["24"].rotation.y + 0.02;
-            tiles["33"].rotation.y = tiles["33"].rotation.y + 0.02;
-            tiles["42"].rotation.y = tiles["42"].rotation.y + 0.02;
-            tiles["51"].rotation.y = tiles["51"].rotation.y + 0.02;
-            tiles["60"].rotation.y = tiles["60"].rotation.y + 0.02;
+            tiles["06"].rotation.y = tiles["06"].rotation.y + 0.02*mult;
+            tiles["15"].rotation.y = tiles["15"].rotation.y + 0.02*mult;
+            tiles["24"].rotation.y = tiles["24"].rotation.y + 0.02*mult;
+            tiles["33"].rotation.y = tiles["33"].rotation.y + 0.02*mult;
+            tiles["42"].rotation.y = tiles["42"].rotation.y + 0.02*mult;
+            tiles["51"].rotation.y = tiles["51"].rotation.y + 0.02*mult;
+            tiles["60"].rotation.y = tiles["60"].rotation.y + 0.02*mult;
 
 
-            tiles["05"].rotation.y = tiles["05"].rotation.y + 0.01;
-            tiles["14"].rotation.y = tiles["14"].rotation.y + 0.01;
-            tiles["23"].rotation.y = tiles["23"].rotation.y + 0.01;
-            tiles["32"].rotation.y = tiles["32"].rotation.y + 0.01;
-            tiles["41"].rotation.y = tiles["41"].rotation.y + 0.01;
-            tiles["50"].rotation.y = tiles["50"].rotation.y + 0.01;
+            tiles["05"].rotation.y = tiles["05"].rotation.y + 0.01*mult;
+            tiles["14"].rotation.y = tiles["14"].rotation.y + 0.01*mult;
+            tiles["23"].rotation.y = tiles["23"].rotation.y + 0.01*mult;
+            tiles["32"].rotation.y = tiles["32"].rotation.y + 0.01*mult;
+            tiles["41"].rotation.y = tiles["41"].rotation.y + 0.01*mult;
+            tiles["50"].rotation.y = tiles["50"].rotation.y + 0.01*mult;
 
-            tiles["16"].rotation.y = tiles["16"].rotation.y + 0.01;
-            tiles["25"].rotation.y = tiles["25"].rotation.y + 0.01;
-            tiles["34"].rotation.y = tiles["34"].rotation.y + 0.01;
-            tiles["43"].rotation.y = tiles["43"].rotation.y + 0.01;
-            tiles["52"].rotation.y = tiles["52"].rotation.y + 0.01;
-            tiles["61"].rotation.y = tiles["61"].rotation.y + 0.01;
+            tiles["16"].rotation.y = tiles["16"].rotation.y + 0.01*mult;
+            tiles["25"].rotation.y = tiles["25"].rotation.y + 0.01*mult;
+            tiles["34"].rotation.y = tiles["34"].rotation.y + 0.01*mult;
+            tiles["43"].rotation.y = tiles["43"].rotation.y + 0.01*mult;
+            tiles["52"].rotation.y = tiles["52"].rotation.y + 0.01*mult;
+            tiles["61"].rotation.y = tiles["61"].rotation.y + 0.01*mult;
 
-            tiles["04"].rotation.y = tiles["04"].rotation.y + 0.005;
-            tiles["13"].rotation.y = tiles["13"].rotation.y + 0.005;
-            tiles["22"].rotation.y = tiles["22"].rotation.y + 0.005;
-            tiles["31"].rotation.y = tiles["31"].rotation.y + 0.005;
-            tiles["40"].rotation.y = tiles["40"].rotation.y + 0.005;
+            tiles["04"].rotation.y = tiles["04"].rotation.y + 0.005*mult;
+            tiles["13"].rotation.y = tiles["13"].rotation.y + 0.005*mult;
+            tiles["22"].rotation.y = tiles["22"].rotation.y + 0.005*mult;
+            tiles["31"].rotation.y = tiles["31"].rotation.y + 0.005*mult;
+            tiles["40"].rotation.y = tiles["40"].rotation.y + 0.005*mult;
 
-            tiles["26"].rotation.y = tiles["26"].rotation.y + 0.005;
-            tiles["35"].rotation.y = tiles["35"].rotation.y + 0.005;
-            tiles["44"].rotation.y = tiles["44"].rotation.y + 0.005;
-            tiles["53"].rotation.y = tiles["53"].rotation.y + 0.005;
-            tiles["62"].rotation.y = tiles["62"].rotation.y + 0.005;
+            tiles["26"].rotation.y = tiles["26"].rotation.y + 0.005*mult;
+            tiles["35"].rotation.y = tiles["35"].rotation.y + 0.005*mult;
+            tiles["44"].rotation.y = tiles["44"].rotation.y + 0.005*mult;
+            tiles["53"].rotation.y = tiles["53"].rotation.y + 0.005*mult;
+            tiles["62"].rotation.y = tiles["62"].rotation.y + 0.005*mult;
 
-            tiles["03"].rotation.y = tiles["03"].rotation.y + 0.0025;
-            tiles["12"].rotation.y = tiles["12"].rotation.y + 0.0025;
-            tiles["21"].rotation.y = tiles["21"].rotation.y + 0.0025;
-            tiles["30"].rotation.y = tiles["30"].rotation.y + 0.0025;
+            tiles["03"].rotation.y = tiles["03"].rotation.y + 0.0025*mult;
+            tiles["12"].rotation.y = tiles["12"].rotation.y + 0.0025*mult;
+            tiles["21"].rotation.y = tiles["21"].rotation.y + 0.0025*mult;
+            tiles["30"].rotation.y = tiles["30"].rotation.y + 0.0025*mult;
 
-            tiles["03"].rotation.y = tiles["03"].rotation.y + 0.0025;
-            tiles["12"].rotation.y = tiles["12"].rotation.y + 0.0025;
-            tiles["21"].rotation.y = tiles["21"].rotation.y + 0.0025;
-            tiles["30"].rotation.y = tiles["30"].rotation.y + 0.0025;
+            tiles["03"].rotation.y = tiles["03"].rotation.y + 0.0025*mult;
+            tiles["12"].rotation.y = tiles["12"].rotation.y + 0.0025*mult;
+            tiles["21"].rotation.y = tiles["21"].rotation.y + 0.0025*mult;
+            tiles["30"].rotation.y = tiles["30"].rotation.y + 0.0025*mult;
 
-            tiles["36"].rotation.y = tiles["36"].rotation.y + 0.0025;
-            tiles["45"].rotation.y = tiles["45"].rotation.y + 0.0025;
-            tiles["54"].rotation.y = tiles["54"].rotation.y + 0.0025;
-            tiles["63"].rotation.y = tiles["63"].rotation.y + 0.0025;
+            tiles["36"].rotation.y = tiles["36"].rotation.y + 0.0025*mult;
+            tiles["45"].rotation.y = tiles["45"].rotation.y + 0.0025*mult;
+            tiles["54"].rotation.y = tiles["54"].rotation.y + 0.0025*mult;
+            tiles["63"].rotation.y = tiles["63"].rotation.y + 0.0025*mult;
 
-            tiles["02"].rotation.y = tiles["02"].rotation.y + 0.00175;
-            tiles["11"].rotation.y = tiles["11"].rotation.y + 0.00175;
-            tiles["20"].rotation.y = tiles["20"].rotation.y + 0.00175;
+            tiles["02"].rotation.y = tiles["02"].rotation.y + 0.00175*mult;
+            tiles["11"].rotation.y = tiles["11"].rotation.y + 0.00175*mult;
+            tiles["20"].rotation.y = tiles["20"].rotation.y + 0.00175*mult;
 
-            tiles["46"].rotation.y = tiles["46"].rotation.y + 0.00175;
-            tiles["55"].rotation.y = tiles["55"].rotation.y + 0.00175;
-            tiles["64"].rotation.y = tiles["64"].rotation.y + 0.00175;
+            tiles["46"].rotation.y = tiles["46"].rotation.y + 0.00175*mult;
+            tiles["55"].rotation.y = tiles["55"].rotation.y + 0.00175*mult;
+            tiles["64"].rotation.y = tiles["64"].rotation.y + 0.00175*mult;
 
-            tiles["01"].rotation.y = tiles["01"].rotation.y + 0.000875;
-            tiles["10"].rotation.y = tiles["10"].rotation.y + 0.000875;
+            tiles["01"].rotation.y = tiles["01"].rotation.y + 0.000875*mult;
+            tiles["10"].rotation.y = tiles["10"].rotation.y + 0.000875*mult;
 
-            tiles["56"].rotation.y = tiles["56"].rotation.y + 0.000875;
-            tiles["65"].rotation.y = tiles["65"].rotation.y + 0.000875;
+            tiles["56"].rotation.y = tiles["56"].rotation.y + 0.000875*mult;
+            tiles["65"].rotation.y = tiles["65"].rotation.y + 0.000875*mult;
 
-            tiles["00"].rotation.y = tiles["00"].rotation.y + 0.0004375;
+            tiles["00"].rotation.y = tiles["00"].rotation.y + 0.0004375*mult;
 
-            tiles["66"].rotation.y = tiles["66"].rotation.y + 0.0004375;
+            tiles["66"].rotation.y = tiles["66"].rotation.y + 0.0004375*mult;
             
-            tileobject.rotation.y = tileobject.rotation.y + 0.0004375;
+            tileobject.rotation.y = tileobject.rotation.y + 0.0004375*mult;
             
                  
             
